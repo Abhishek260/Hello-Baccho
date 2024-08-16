@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         activityBinding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityBinding.root)
         setOnClick()
-        playSound()
+
     }
 
     private fun setOnClick(){
@@ -24,13 +24,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    open fun playSound() {
-        try {
-            val notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-            val r = RingtoneManager.getRingtone(applicationContext, notification)
-            r.play()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
+
 }

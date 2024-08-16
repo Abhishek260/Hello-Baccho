@@ -25,7 +25,7 @@ object AppModule {
     fun provideHttpClient(): OkHttpClient {
         val okHttpClient = OkHttpClient.Builder()
         try {
-            // Create a trust manager that does not validate certificate chains
+            // Created a trust manager that does not validate certificate chains
             val trustAllCerts:  Array<TrustManager> = arrayOf(object : X509TrustManager {
                 override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?){}
                 override fun checkServerTrusted(chain: Array<out X509Certificate>?, authType: String?) {}
@@ -33,7 +33,7 @@ object AppModule {
                 override fun getAcceptedIssuers(): Array<X509Certificate>  = arrayOf()
             })
 
-            // Install the all-trusting trust manager
+            // Installed the all-trusting trust manager
             val  sslContext = SSLContext.getInstance("SSL")
             sslContext.init(null, trustAllCerts, SecureRandom())
 
@@ -49,11 +49,6 @@ object AppModule {
             return okHttpClient.build()
         }
 
-
-//        return OkHttpClient.Builder()
-//            .connectTimeout(5, TimeUnit.MINUTES)
-//            .readTimeout(3, TimeUnit.MINUTES)
-//            .build()
     }
 
     @Provides

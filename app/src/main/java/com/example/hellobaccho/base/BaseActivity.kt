@@ -182,18 +182,7 @@ open class BaseActivity @Inject constructor(): AppCompatActivity() {
             }
             materialDatePicker!!.show(supportFragmentManager, "DATE_PICKER");
         }
-//            MaterialPickerOnPositiveButtonClickListener<Pair<Long?, Long?>> { (first, second) ->
-//                val viewFormat = SimpleDateFormat("MM-dd-yyyy")
-//                val sqlFormat = SimpleDateFormat("yyyy-MM-dd")
-//                val fromDate = Date(first)
-//                val toDate = Date(second)
-//                val periodSelection = PeriodSelection()
-//                periodSelection.setSqlFromDate(sqlFormat.format(fromDate))
-//                periodSelection.setSqlToDate(sqlFormat.format(toDate))
-//                periodSelection.setViewFromDate(viewFormat.format(fromDate))
-//                periodSelection.setViewToDate(viewFormat.format(toDate))
-//                mPeriod.postValue(periodSelection)
-//            })
+
     }
 
 
