@@ -66,7 +66,6 @@ class EpisodeBottomSheet  @Inject constructor(): BaseFragment(), OnCardClick<Any
         super.onViewCreated(view, savedInstanceState)
 
             layoutBinding.toolbarTitle.text = title
-        successToast(episodes?.size.toString())
 
         dialog!!.setOnShowListener { dialog ->
             val d = dialog as BottomSheetDialog
@@ -79,7 +78,7 @@ class EpisodeBottomSheet  @Inject constructor(): BaseFragment(), OnCardClick<Any
             layoutBinding.extraSpace.minimumHeight =
                 Resources.getSystem().displayMetrics.heightPixels / 2
 
-            behavior.isDraggable = false
+            behavior.isDraggable = true
 
         }
         layoutBinding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {

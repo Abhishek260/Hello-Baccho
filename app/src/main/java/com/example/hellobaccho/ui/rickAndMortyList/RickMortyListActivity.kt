@@ -1,4 +1,5 @@
 package com.example.hellobaccho.ui.rickAndMortyList
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -132,9 +133,24 @@ class RickMortyListActivity @Inject constructor(): BaseActivity(),OnCardClick<An
         else if (clickType==EpisodesListAdapter.EPISODE_SELECTION_CLICK){
             val model = data as String
             Log.d("URL", model)
-            successToast(model)
+            showDialog(model)
         }
     }
+
+    private fun showDialog(model: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Episode Selected")
+        builder.setMessage(model)
+        playSound()
+        builder.setPositiveButton("OK") { dialog, _ ->
+            dialog.dismiss()
+        }
+//        Sir we can set negative and positive both buttons and can perform action accordingly
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
 
 
     private fun episodeBottomSheet(mContext: Context, title: String, onCardClick: OnCardClick<Any>,episodes:List<String>?) {
