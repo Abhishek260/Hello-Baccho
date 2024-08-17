@@ -11,15 +11,8 @@ interface Api {
         @Query("page") pageNo: String?,
     ): Call<ResultData>
 
-    @GET("WMS/GetJeenaDashBoard")
-    fun getUserMenu(
-        @Query("prmconnstring") companyId: String,
-        @Query("prmusercode") userCode:String?,
-        @Query("prmbranchcode") branchCode:String?,
-        @Query("prmfromdt") fromDt: String?,
-        @Query("prmtodt") toDt: String?,
-        @Query("prmappversion") appVersion: String?,
-    ): Call<ResultData>
+
+
 
 
 }

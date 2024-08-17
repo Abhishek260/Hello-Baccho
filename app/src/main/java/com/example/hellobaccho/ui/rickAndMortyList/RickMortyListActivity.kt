@@ -1,7 +1,10 @@
 package com.example.hellobaccho.ui.rickAndMortyList
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hellobaccho.base.BaseActivity
 import com.example.hellobaccho.dataModels.Result
@@ -11,6 +14,8 @@ import com.example.hellobaccho.ui.rickAndMortyList.adapters.RickMortyAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.hellobaccho.ui.bottomsheets.episodes.EpisodeBottomSheet
+import com.example.hellobaccho.ui.bottomsheets.episodes.EpisodesListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -26,6 +31,7 @@ class RickMortyListActivity @Inject constructor(): BaseActivity(),OnCardClick<An
         super.onCreate(savedInstanceState)
         activityBinding = ActivityRickMortyListBinding.inflate(layoutInflater)
         setContentView(activityBinding.root)
+        setSupportActionBar(activityBinding.toolBar as Toolbar)
         setUpToolbar("Rick Morty Data")
         val getPageNo = intent.getStringExtra("pageNo")
         getRickMortyList(getPageNo);
@@ -101,7 +107,38 @@ class RickMortyListActivity @Inject constructor(): BaseActivity(),OnCardClick<An
         }
     }
 
+
+
+    private fun getEpisodesById(id: Int): List<String>? {
+        val result = rickMortyList.find { it.id == id }
+        return result?.episode
+    }
+
+
+
     override fun onClick(data: Any, clickType: String) {
-        TODO("Not yet implemented")
+
+        if (clickType=="Episode"){
+            val model = data as Result
+            val episode = getEpisodesById(model.id)
+//            successToast(episode?.size.toString())
+            episodeBottomSheet(
+                mContext = this,
+                title ="Episodes",
+                onCardClick = this,
+                episodes = episode
+            )
+        }
+        else if (clickType==EpisodesListAdapter.EPISODE_SELECTION_CLICK){
+            val model = data as String
+            Log.d("URL", model)
+            successToast(model)
+        }
+    }
+
+
+    private fun episodeBottomSheet(mContext: Context, title: String, onCardClick: OnCardClick<Any>,episodes:List<String>?) {
+        val bottomSheetDialog = EpisodeBottomSheet.newInstance(mContext, title, onCardClick,episodes)
+        bottomSheetDialog.show(supportFragmentManager, EpisodeBottomSheet.TAG)
     }
 }

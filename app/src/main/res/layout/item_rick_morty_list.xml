@@ -245,7 +245,7 @@
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="10dp"
                     android:padding="15dp"
-                    android:text="Test"
+                    android:text="Show Episodes"
                     app:cornerRadius="10dp"
                     />
 

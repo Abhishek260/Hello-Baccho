@@ -48,7 +48,7 @@ class RickMortyAdapter @Inject constructor(
         fun onBind(rickMortyData: Result, onCardClick: OnCardClick<Any>) {
             layoutBinding.rickMortyData = rickMortyData
             layoutBinding.clickBtn.setOnClickListener {
-                onCardClick.onClick(rickMortyData, "test")
+                onCardClick.onClick(rickMortyData, "Episode")
             }
         }
     }
