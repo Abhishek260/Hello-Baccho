@@ -11,6 +11,10 @@ interface Api {
         @Query("page") pageNo: String?,
     ): Call<ResultData>
 
+    @GET("episode")
+    fun rickAndMortyEpisode(
+    ): Call<ResultData>
+
 
 
 
