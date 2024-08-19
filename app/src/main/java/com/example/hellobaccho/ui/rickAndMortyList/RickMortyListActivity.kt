@@ -1,6 +1,7 @@
 package com.example.hellobaccho.ui.rickAndMortyList
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -13,10 +14,12 @@ import com.example.hellobaccho.databinding.ActivityRickMortyListBinding
 import com.example.hellobaccho.interfaces.OnCardClick
 import com.example.hellobaccho.ui.rickAndMortyList.adapters.RickMortyAdapter
 import androidx.lifecycle.Observer
+import com.google.gson.Gson
 import androidx.lifecycle.lifecycleScope
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.hellobaccho.ui.bottomsheets.episodes.EpisodeBottomSheet
 import com.example.hellobaccho.ui.bottomsheets.episodes.EpisodesListAdapter
+import com.example.hellobaccho.ui.detailActivity.DetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -28,6 +31,7 @@ class RickMortyListActivity @Inject constructor(): BaseActivity(),OnCardClick<An
     private var rickMortyList: List<Result> = ArrayList()
     private var rvAdapter:RickMortyAdapter? = null
     private lateinit var manager: LinearLayoutManager
+    private var resultData:Result? =  null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityBinding = ActivityRickMortyListBinding.inflate(layoutInflater)
@@ -137,6 +141,21 @@ class RickMortyListActivity @Inject constructor(): BaseActivity(),OnCardClick<An
         }
     }
 
+    override fun onCardClick(data: Any, clickType: String, index: Int) {
+        if (clickType=="Card"){
+            resultData = rickMortyList.elementAt(index)
+            val gson = Gson()
+            try {
+                val jsonString = gson.toJson(resultData)
+                val intent = Intent(this, DetailActivity::class.java)
+                intent.putExtra("CardData", jsonString)
+                startActivity(intent)
+            } catch (ex: Exception){
+                errorToast("Data Conversion Error: " + ex.message)
+            }
+        }
+    }
+
     private fun showDialog(model: String) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Episode Selected")
@@ -157,4 +176,5 @@ class RickMortyListActivity @Inject constructor(): BaseActivity(),OnCardClick<An
         val bottomSheetDialog = EpisodeBottomSheet.newInstance(mContext, title, onCardClick,episodes)
         bottomSheetDialog.show(supportFragmentManager, EpisodeBottomSheet.TAG)
     }
+
 }

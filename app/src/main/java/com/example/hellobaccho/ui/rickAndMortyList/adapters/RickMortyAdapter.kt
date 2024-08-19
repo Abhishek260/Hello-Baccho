@@ -50,6 +50,9 @@ class RickMortyAdapter @Inject constructor(
             layoutBinding.clickBtn.setOnClickListener {
                 onCardClick.onClick(rickMortyData, "Episode")
             }
+            layoutBinding.rickMortyDataCard.setOnClickListener {
+                onCardClick.onCardClick(rickMortyData,"Card",adapterPosition)
+            }
         }
     }
 

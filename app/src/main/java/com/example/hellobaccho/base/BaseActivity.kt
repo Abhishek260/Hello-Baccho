@@ -2,23 +2,15 @@ package com.example.hellobaccho.base
 
 import android.app.ProgressDialog
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Bitmap
-import android.net.Uri
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
-import android.Manifest
-import android.content.pm.PackageManager
 import android.media.RingtoneManager
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.Locale
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -80,6 +72,13 @@ open class BaseActivity @Inject constructor(): AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    open fun formatDateTime(input: String): String {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("HH:mm:ss, dd-MM-yyyy", Locale.getDefault())
+        val date = inputFormat.parse(input)
+        return outputFormat.format(date!!)
     }
 
 

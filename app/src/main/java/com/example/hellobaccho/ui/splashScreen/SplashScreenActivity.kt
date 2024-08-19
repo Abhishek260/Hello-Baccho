@@ -87,7 +87,7 @@ class SplashScreenActivity @Inject constructor() : ComponentActivity() {
                     contentScale = ContentScale.Fit,
                     modifier = Modifier
                         .alpha(animatedLogoAlpha.value)
-                        .size(150.dp)
+                        .size(350.dp)
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
