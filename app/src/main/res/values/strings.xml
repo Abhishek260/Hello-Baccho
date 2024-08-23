@@ -5,4 +5,5 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_activity_card_detail">CardDetail</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_episode_bottom_sheet">EpisodeBottomSheet</string>
 </resources>

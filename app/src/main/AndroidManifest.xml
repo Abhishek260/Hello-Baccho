@@ -22,6 +22,11 @@
         android:theme="@style/Theme.HelloBaccho"
         tools:targetApi="31">
         <activity
+            android:name=".ui.bottomsheets.jetpackBottomSheet.EpisodeBottomSheet"
+            android:exported="false"
+            android:label="@string/title_activity_episode_bottom_sheet"
+            android:theme="@style/Theme.HelloBaccho" />
+        <activity
             android:name=".ui.introPage.MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main"
@@ -31,7 +36,6 @@
             android:exported="false"
             android:label="@string/title_activity_card_detail"
             android:theme="@style/Theme.HelloBaccho" />
-
         <activity
             android:name=".ui.splashScreen.SplashScreenActivity"
             android:exported="true"
@@ -48,8 +52,7 @@
         <activity
             android:name=".ui.rickAndMortyList.RickMortyListActivity"
             android:exported="false"
-            android:parentActivityName=".ui.introPage.MainActivity" /> <!-- Main Activity -->
-
+            android:parentActivityName=".ui.introPage.MainActivity" />
     </application>
 
 </manifest>
