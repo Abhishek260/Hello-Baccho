@@ -25,7 +25,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.hellobaccho.MainActivity
+import com.example.hellobaccho.ui.introPage.MainActivity
 import com.example.hellobaccho.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
