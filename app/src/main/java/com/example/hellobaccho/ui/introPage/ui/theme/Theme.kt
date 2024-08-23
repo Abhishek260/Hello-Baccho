@@ -9,17 +9,15 @@ import androidx.compose.material3.Shapes
 import androidx.compose.ui.graphics.Color
 import com.example.hellobaccho.ui.introPage.MainScreen
 
-// Define your color scheme
+
 private val LightColorScheme = lightColorScheme(
     primary = Blue500,
     onPrimary = Color.White,
     primaryContainer = Blue700,
     onPrimaryContainer = Color.White,
     secondary = Teal200,
-    // Add other color attributes if needed
 )
 
-// Define Typography and Shapes for Material3
 private val AppTypography = Typography()
 private val AppShapes = Shapes()
 
@@ -39,6 +37,6 @@ fun HelloBacchoTheme(
 @Composable
 fun DefaultPreview() {
     HelloBacchoTheme {
-        MainScreen() // Ensure you have a MainScreen composable to preview
+        MainScreen()
     }
 }

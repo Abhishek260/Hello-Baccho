@@ -60,7 +60,7 @@ fun MainScreen() {
                 Text(text = "Enter Page No")
                 Text(
                     text = "*",
-                    color = Color.Red, // Assuming danger color is red
+                    color = Color.Red,
                     modifier = Modifier.padding(start = 4.dp)
                 )
             }
