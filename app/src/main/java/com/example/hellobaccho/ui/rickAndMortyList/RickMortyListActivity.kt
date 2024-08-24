@@ -18,7 +18,6 @@ import com.example.hellobaccho.base.BaseActivity
 import com.example.hellobaccho.dataModels.Result
 import com.example.hellobaccho.databinding.ActivityRickMortyListBinding
 import com.example.hellobaccho.interfaces.OnCardClick
-import com.example.hellobaccho.ui.bottomsheets.episodes.EpisodesListAdapter
 import com.example.hellobaccho.ui.cardDetail.CardDetail
 import com.example.hellobaccho.ui.rickAndMortyList.adapters.RickMortyAdapter
 import com.google.gson.Gson
@@ -119,12 +118,13 @@ class RickMortyListActivity @Inject constructor() : BaseActivity(), OnCardClick<
     override fun onClick(data: Any, clickType: String) {
         if (clickType == "Episode") {
             val model = data as Result
+            val url = model.url
             val episode = getEpisodesById(model.id)
             showEpisodeBottomSheet("Episodes", episode)
-        } else if (clickType == EpisodesListAdapter.EPISODE_SELECTION_CLICK) {
-            val model = data as String
-            Log.d("URL", model)
-            showDialog(model)
+        } else if (clickType == "Episode") {
+            val model = data as Result
+            Log.d("URL", model.url)
+            showDialog(model.url)
         }
     }
 
@@ -143,17 +143,6 @@ class RickMortyListActivity @Inject constructor() : BaseActivity(), OnCardClick<
         }
     }
 
-//    private fun showDialog(model: String) {
-//        val builder = AlertDialog.Builder(this)
-//        builder.setTitle("Episode Selected")
-//        builder.setMessage(model)
-//        playSound()
-//        builder.setPositiveButton("OK") { dialog, _ ->
-//            dialog.dismiss()
-//        }
-//        val dialog: AlertDialog = builder.create()
-//        dialog.show()
-//    }
     private fun showDialog(model: String) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Episode Selected")
